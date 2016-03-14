@@ -95,84 +95,84 @@ def create_integration_file(folder, example):
   filecontent = ''
   if example:
     filecontent = '''xyz:
-addon_type: integration
-beta: false
-categories:
-- Audiences
-channels:
-- web
-products:
-- ab_testing
-- personalization
-description: Use this integration to create Optimizely
-  audiences based on visitor data from XYZ.  This
-  integration requires an existing account with XYZ.
-developer: XYZ
-enabled: true
-logo_file_name: logo.png
-master_label: XYZ
-partner_dir_url: https://www.optimizely.com/partners/technology/XYZ
-permission_required: xyz_integration
-settings_metadata:
-  fields:
-  - inputType: text
-    label: Streaming URL
-    name: streaming_url
-    required: true
-    includeInSnippet: true
-    saveLocations:
-    - project
-  - inputType: text
-    label: Campaigns URL
-    name: campaigns_url
-    required: true
-    saveLocations:
-    - project    
-  generalHelp:
-    project:
-      kbLink: https://help.xyz.com/optimizely-integration
-  onOffableAtExperimentLevel: false
-  onOffableAtProjectLevel: true
-  settingsHelp: {}'''
+  addon_type: integration
+  beta: false
+  categories:
+  - Audiences
+  channels:
+  - web
+  products:
+  - ab_testing
+  - personalization
+  description: Use this integration to create Optimizely
+    audiences based on visitor data from XYZ.  This
+    integration requires an existing account with XYZ.
+  developer: XYZ
+  enabled: true
+  logo_file_name: logo.png
+  master_label: XYZ
+  partner_dir_url: https://www.optimizely.com/partners/technology/XYZ
+  permission_required: xyz_integration
+  settings_metadata:
+    fields:
+    - inputType: text
+      label: Streaming URL
+      name: streaming_url
+      required: true
+      includeInSnippet: true
+      saveLocations:
+      - project
+    - inputType: text
+      label: Campaigns URL
+      name: campaigns_url
+      required: true
+      saveLocations:
+      - project    
+    generalHelp:
+      project:
+        kbLink: https://help.xyz.com/optimizely-integration
+    onOffableAtExperimentLevel: false
+    onOffableAtProjectLevel: true
+    settingsHelp: {}'''
   else:
     filecontent = folder + ''':
-addon_type: # Value: integration or app
-beta: false
-categories:
-- # Fill in the categorie type displayed on the integrations tab. Values: Analytics, Call tracking, Audiences, Heatmap, Content Management, Productivity
-channels:
-- web
-products:
-- ab_testing
-- personalization
-description: # Provide a description of what your app does. The description will be displayed on the integration tab.
-developer: # The name of you or your company
-enabled: true
-logo_file_name: # What is the filename of your logo (in the assets folder)
-master_label: # Name of the integration as displayed on the integrations tab
-partner_dir_url: https://www.optimizely.com/partners/technology/'''+ folder+'''
-permission_required: '''+folder+'''_integration
-settings_metadata: # Define setting fields that are referenceable in all of your integration logic. Example:
-# fields:
-# - inputType: text
-#   label: Streaming URL
-#   name: streaming_url
-#   required: true
-#   includeInSnippet: true
-#   saveLocations:
-#   - project
-# - inputType: text
-#   label: Campaigns URL
-#   name: campaigns_url
-#   required: true
-#   saveLocations:
-#   - project 
-  generalHelp:
-    project:
-      kbLink: # Link to a help article regarding the integration
-  onOffableAtExperimentLevel: false
-  onOffableAtProjectLevel: # Does this integration have an on/off switch or is it only a integrations tab listing?
-  settingsHelp: {}'''
+  addon_type: # Value: integration or app
+  beta: false
+  categories:
+  - # Fill in the categorie type displayed on the integrations tab. Values: Analytics, Call tracking, Audiences, Heatmap, Content Management, Productivity
+  channels:
+  - web
+  products:
+  - ab_testing
+  - personalization
+  description: # Provide a description of what your app does. The description will be displayed on the integration tab.
+  developer: # The name of you or your company
+  enabled: true
+  logo_file_name: # What is the filename of your logo (in the assets folder)
+  master_label: # Name of the integration as displayed on the integrations tab
+  partner_dir_url: https://www.optimizely.com/partners/technology/'''+ folder+'''
+  permission_required: '''+folder+'''_integration
+  settings_metadata: # Define setting fields that are referenceable in all of your integration logic. Example:
+  # fields:
+  # - inputType: text
+  #   label: Streaming URL
+  #   name: streaming_url
+  #   required: true
+  #   includeInSnippet: true
+  #   saveLocations:
+  #   - project
+  # - inputType: text
+  #   label: Campaigns URL
+  #   name: campaigns_url
+  #   required: true
+  #   saveLocations:
+  #   - project 
+    generalHelp:
+      project:
+        kbLink: # Link to a help article regarding the integration
+    onOffableAtExperimentLevel: false
+    onOffableAtProjectLevel: # Does this integration have an on/off switch or is it only a integrations tab listing?
+    settingsHelp: {}'''
 
 
 
@@ -184,7 +184,7 @@ def create_example_response_file(folder, example):
   filecontent = '// Provide an example response from your streaming server (if you use dynamic audiences in your integration)'
   if example:
     filecontent = '''// Example response
- "{campaigns": [
+ {"campaigns": [
   {
     "campaign": 51899,
     "seg_id": "1387680654",
@@ -241,6 +241,7 @@ def create_functions_js_file(folder, example):
     filecontent = '''{
   fetchData: function() {
     $.getJSON("", function(data) {
+      window["optimizely"] = window["optimizely"] || [];
       window["optimizely"].push(["storeThirdPartyData", "xyz", data]);
     });
   }
@@ -267,10 +268,9 @@ def create_functions_py_file(folder, example):
   filename = 'functions.py'
   filecontent = ''
   if example:
-    filecontent = '''
-    from optimizely_platform import exceptions
-    from optimizely_platform import objects
-    def get_dynamic_audience_conditions(integration_settings):
+    filecontent = '''from optimizely_platform import exceptions
+from optimizely_platform import objects
+def get_dynamic_audience_conditions(integration_settings):
   url = str(integration_settings['url'])
 
   response = requests.get(url).json()

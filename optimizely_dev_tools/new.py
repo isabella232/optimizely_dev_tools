@@ -6,7 +6,7 @@ import pkg_resources
 import shutil
 
 def check_packagename(packagename):
-  m = re.match('[a-z0-9_]{4,30}', packagename)
+  m = re.match('[a-z0-9_]{3,30}', packagename)
   return (m != None and m.group(0) == packagename)
 
 def copy_logo(packagename):
@@ -31,7 +31,7 @@ def create_package(packagename, example):
 
   packagefiles.create_config_file(packagename, example)
   print('[' + Fore.GREEN + 'SUCCESS' + Style.RESET_ALL + '] Created ' + packagename + '/config.yaml')  
-###
+
   packagefiles.create_example_response_file(packagename, example)
   print('[' + Fore.GREEN + 'SUCCESS' + Style.RESET_ALL + '] Created ' + packagename + '/example.json')
 

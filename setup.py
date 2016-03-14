@@ -10,7 +10,7 @@ setup(name='optimizely_dev_tools',
       packages=['optimizely_dev_tools'],
       scripts=['opti'],
       install_requires=[
-        'flask', 'colorama'
+        'flask', 'colorama', 'PyYAML'
       ],
       package_data={'optimizely_dev_tools': ['assets/*.png', 'assets/*.csv', 'assets/*.rst/', 'assets/*.txt']},
       zip_safe=False)
