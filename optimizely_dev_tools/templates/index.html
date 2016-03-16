@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Base OUI Template</title>
+
+    <!-- OUI CSS -->
+    <link rel="stylesheet" href="static/oui.css">
+    <script src="static/jquery.min.js"></script>
+  </head>
+  <body style="padding:20px;">
+    <h1>Welcome Optimizely developer!</h1>
+    You are currently 'running' a package and we can't wait to show you if it works. You are currently running an {{ data.categories[0] }} package. The flow for a user will be:
+
+    {% if data.categories[0] == 'Audiences' %}
+
+      <h2>1. The integrations tab: providing all the settings</h2>
+        <p>
+          The integrations dashboard is the first experience a user has with your integration. In the dashboard, a user can set up all the integration specific settings.
+        </p>
+        <p>
+          <a href='/dashboard'>Go to the integrations dashboard</a>
+        </p>
+
+
+      <h2>2. The audience builder: create an audience with conditions from your integration</h2>
+        <p>
+          The second step for a user is to actually use your audience in the audience builder. Set up an audience using your conditions.
+        </p>
+        <p>
+          <a href="/audience-builder" class="link--disabled">Go to the audience builder</a>
+        </p>
+      <h2>3. The website: is your condition matching the data?</h2>
+        <p>
+          The last step is to see if the condition actually matches up with the data returned from your server. 
+        </p>
+        <p>
+          <a href="/audience-builder" class="link--disabled">Go to the audience builder</a>
+        </p>
+    {% endif %}
+  </body>
+</html>
+

@@ -4,6 +4,7 @@ import re
 from optimizely_dev_tools import packagefiles
 import pkg_resources
 import shutil
+import sys
 
 def check_packagename(packagename):
   m = re.match('[a-z0-9_]{3,30}', packagename)
@@ -47,8 +48,12 @@ def create_package(packagename, example):
 def main(args):
   init(autoreset=True)
   packagename = args.packagename
-  example = args.example
+  example = args.audience
   
+  if example and packagename != 'xyz':
+    print('[' + Fore.RED + 'ERROR' + Style.RESET_ALL + '] For the example package, the packagename should be xyz. Run: ' + Fore.RED + 'opti new xyz -e' + Style.RESET_ALL)
+    sys.exit(0)
+
   if not check_packagename(packagename):
     print('[' + Fore.RED + 'ERROR' + Style.RESET_ALL + '] Packagename must match [a-z0-9_]{4,30}')
   elif not os.path.exists(packagename):

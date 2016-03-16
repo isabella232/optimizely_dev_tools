@@ -20,5 +20,14 @@ setup(name='optimizely_dev_tools',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
       ],      
-      package_data={'optimizely_dev_tools': ['assets/*.png', 'assets/*.csv', 'assets/*.rst/', 'assets/*.txt']},
+      package_data={'optimizely_dev_tools': [
+        'assets/*.png', 
+        'assets/*.csv', 
+        'assets/*.html', 
+        'templates/*.html',
+        'static/*.png',
+        'static/*.svg',
+        'static/*.css',
+        'static/*.js'
+      ]},
       zip_safe=False)

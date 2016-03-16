@@ -9,7 +9,8 @@ def main():
   subparser = parser.add_subparsers()
   
   new_parser = subparser.add_parser('new', description='Create a new Optimizely integration package.')
-  new_parser.add_argument('-e', '--example', action='store_true')
+  new_parser.add_argument('--audience', action='store_true')
+  new_parser.add_argument('--app', action='store_true')
   new_parser.add_argument('packagename')
   new_parser.set_defaults(func=new.main)
 
