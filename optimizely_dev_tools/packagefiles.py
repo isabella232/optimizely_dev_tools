@@ -108,6 +108,7 @@ def create_integration_file(folder, example):
     audiences based on visitor data from XYZ.  This
     integration requires an existing account with XYZ.
   developer: XYZ
+  developer_website: null
   enabled: true
   logo_file_name: logo.png
   master_label: XYZ
@@ -147,6 +148,7 @@ def create_integration_file(folder, example):
   - personalization
   description: # Provide a description of what your app does. The description will be displayed on the integration tab.
   developer: # The name of you or your company
+  developer_website: # Your website
   enabled: true
   logo_file_name: # What is the filename of your logo (in the assets folder)
   master_label: # Name of the integration as displayed on the integrations tab
@@ -268,7 +270,10 @@ def create_functions_py_file(folder, example):
   filename = 'functions.py'
   filecontent = ''
   if example:
-    filecontent = '''from optimizely_platform import exceptions
+    filecontent = '''
+import requests
+
+from optimizely_platform import exceptions
 from optimizely_platform import objects
 def get_dynamic_audience_conditions(integration_settings):
   url = str(integration_settings['url'])
