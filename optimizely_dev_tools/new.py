@@ -81,6 +81,7 @@ def create_package(package_name, default_config):
 def main(args):
   init(autoreset=True)
   package_name = args.package_name
+  # currently only Audiences supported
   config_type = args.config_type
   default_config = args.default_config
 
