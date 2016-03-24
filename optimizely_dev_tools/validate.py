@@ -2,6 +2,7 @@ import importlib
 import localserver
 import os
 import re
+import subprocess
 import sys
 import yaml
 
@@ -9,8 +10,24 @@ from colorama import Fore, Back, Style, init
 from os import path
 from pprint import pprint
 from pykwalify.core import Core
-from pylint.lint import Run
 from pylint import epylint as lint
+
+def print_successful_validation_message(message):
+  """Prints success message for validation of the contents of a file
+
+  Args:
+    file_name: The file that was successfully validated
+  """
+  print('[' + Fore.GREEN + 'SUCCESS' + Style.RESET_ALL + '] Validated ' + message)
+
+def print_fail_validation_message(exception):
+  """Prints fail message for validation of the contents of a file
+
+  Args:
+    file_name: The file that yields unsuccessful validation results
+    exception: The exception thrown by the file's respective validation function
+  """
+  print('[' + Fore.RED + 'FAIL' + Style.RESET_ALL + '] ' + str(exception))
 
 def validate_package_name(package_name):
   """Check that package name matches convention
@@ -123,13 +140,16 @@ def validate_functions_py(package_name):
   if not hasattr(functions, 'get_dynamic_audience_conditions'):
     raise Exception("functions.py does not contain get_dynamic_audience_conditions function")
 
-def validate_functions_js():
+def validate_functions_js(package_name):
   """Check that an integration's functions.js file is syntactically correct
 
   Raises:
     Exception if functions.js is an invalid JS program
   """
-  pass
+  try:
+    subprocess.check_call(['node','validate_functions.js', package_name+'/functions.js'])
+  except Exception as e:
+    raise Exception("functions.js validation error")
 
 def start_package(packagename, integration):
   localserver.main(packagename, integration)
@@ -137,17 +157,46 @@ def start_package(packagename, integration):
 def main(args):
   init(autoreset=True)
   package_name = args.package_name
-  validate_package_name(package_name)
+
+  try:
+    validate_package_name(package_name)
+    print_successful_validation_message('correctness of format of package name')
+  except Exception as e:
+    print_fail_validation_message(e)
 
   # existence checks
-  validate_package_root_exists(package_name)
-
-  validate_necessary_files_exist(package_name)
+  try:
+    validate_package_root_exists(package_name)
+    print_successful_validation_message('that package root folder exists')
+  except Exception as e:
+    print_fail_validation_message(e)
+  try:
+    validate_necessary_files_exist(package_name)
+    print_successful_validation_message('that necessary files exist')
+  except Exception as e:
+    print_fail_validation_message(e)
 
   # code structure checks
-  validate_integration_yaml(package_name)
-  validate_config_yaml(package_name)
-  validate_functions_py(package_name)
-  validate_functions_js()
+  try:
+    validate_integration_yaml(package_name)
+    print_successful_validation_message('integration.yaml correctness')
+  except Exception as e:
+    print_fail_validation_message(e)
+  try:
+    validate_config_yaml(package_name)
+    print_successful_validation_message('config.yaml correctness')
+  except Exception as e:
+    print_fail_validation_message(e)
+  try:
+    validate_functions_py(package_name)
+    print_successful_validation_message('functions.py correctness')
+  except Exception as e:
+    print_fail_validation_message(e)
+  try:
+    validate_functions_js(package_name)
+    print_successful_validation_message('functions.js correctness')
+  except Exception as e:
+    print_fail_validation_message(e)
 
+  # local app setup
   #start_package(package_name, integration)
