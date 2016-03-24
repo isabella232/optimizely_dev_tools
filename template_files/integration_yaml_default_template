@@ -1,0 +1,41 @@
+{package_name}:
+  addon_type: integration
+  beta: false
+  categories:
+  - Audiences
+  channels:
+  - web
+  products:
+  - ab_testing
+  - personalization
+  description: Use this integration to create Optimizely
+    audiences based on visitor data from {package_name}.  This
+    integration requires an existing account with {package_name}.
+  developer: {package_name}
+  developer_website: null
+  enabled: true
+  logo_file_name: logo.png
+  master_label: {package_name}
+  partner_dir_url: https://www.optimizely.com/partners/technology/{package_name}
+  permission_required: {package_name}_integration
+  settings_metadata:
+    fields:
+    - inputType: text
+      label: Streaming URL
+      name: streaming_url
+      required: true
+      includeInSnippet: true
+      saveLocations:
+      - project
+    - inputType: text
+      label: Campaigns URL
+      name: campaigns_url
+      required: true
+      saveLocations:
+      - project    
+    generalHelp:
+      project:
+        kbLink: https://help.{package_name}.com/optimizely-integration
+    onOffableAtExperimentLevel: false
+    onOffableAtProjectLevel: true
+    settingsHelp: {{}}
