@@ -90,96 +90,19 @@ def create_config_file(folder, example):
   f = open(folder + '/' + filename, 'w')
   f.write(filecontent)
 
-def create_integration_file(folder, example):
-  filename = 'integration.yaml'
-  filecontent = ''
-  if example:
-    filecontent = '''xyz:
-  addon_type: integration
-  beta: false
-  categories:
-  - Audiences
-  channels:
-  - web
-  products:
-  - ab_testing
-  - personalization
-  description: Use this integration to create Optimizely
-    audiences based on visitor data from XYZ.  This
-    integration requires an existing account with XYZ.
-  developer: XYZ
-  developer_website: null
-  enabled: true
-  logo_file_name: logo.png
-  master_label: XYZ
-  partner_dir_url: https://www.optimizely.com/partners/technology/XYZ
-  permission_required: xyz_integration
-  settings_metadata:
-    fields:
-    - inputType: text
-      label: Streaming URL
-      name: streaming_url
-      required: true
-      includeInSnippet: true
-      saveLocations:
-      - project
-    - inputType: text
-      label: Campaigns URL
-      name: campaigns_url
-      required: true
-      saveLocations:
-      - project    
-    generalHelp:
-      project:
-        kbLink: https://help.xyz.com/optimizely-integration
-    onOffableAtExperimentLevel: false
-    onOffableAtProjectLevel: true
-    settingsHelp: {}'''
+def create_integration_file(folder, default_config):
+  file_name = 'integration.yaml'
+  file_content = ''
+  if default_config:
+    with open('template_files/integration_yaml_default_template', 'r') as f:
+      file_content = f.read()
+      file_content = file_content.format(package_name=folder)
   else:
-    filecontent = folder + ''':
-  addon_type: # Value: integration or app
-  beta: false
-  categories:
-  - # Fill in the categorie type displayed on the integrations tab. Values: Analytics, Call tracking, Audiences, Heatmap, Content Management, Productivity
-  channels:
-  - web
-  products:
-  - ab_testing
-  - personalization
-  description: # Provide a description of what your app does. The description will be displayed on the integration tab.
-  developer: # The name of you or your company
-  developer_website: # Your website
-  enabled: true
-  logo_file_name: # What is the filename of your logo (in the assets folder)
-  master_label: # Name of the integration as displayed on the integrations tab
-  partner_dir_url: https://www.optimizely.com/partners/technology/'''+ folder+'''
-  permission_required: '''+folder+'''_integration
-  settings_metadata: # Define setting fields that are referenceable in all of your integration logic. Example:
-  # fields:
-  # - inputType: text
-  #   label: Streaming URL
-  #   name: streaming_url
-  #   required: true
-  #   includeInSnippet: true
-  #   saveLocations:
-  #   - project
-  # - inputType: text
-  #   label: Campaigns URL
-  #   name: campaigns_url
-  #   required: true
-  #   saveLocations:
-  #   - project 
-    generalHelp:
-      project:
-        kbLink: # Link to a help article regarding the integration
-    onOffableAtExperimentLevel: false
-    onOffableAtProjectLevel: # Does this integration have an on/off switch or is it only a integrations tab listing?
-    settingsHelp: {}'''
-
-
-
-  f = open(folder + '/' + filename, 'w')
-  f.write(filecontent)  
+    with open('template_files/integration_yaml_unconfigured_template', 'r') as f:
+      file_content = f.read()
+      file_content = file_content.format(package_name=folder)
+  with open(folder + '/' + file_name, 'w') as f:
+    f.write(file_content)
 
 def create_example_response_file(folder, example):
   filename = 'example.json'
@@ -247,7 +170,7 @@ def create_functions_js_file(folder, example):
       window["optimizely"].push(["storeThirdPartyData", "xyz", data]);
     });
   }
-};
+}
 '''
   else:
     filecontent = '''{
@@ -261,7 +184,7 @@ def create_functions_js_file(folder, example):
      * });
      */
   }
-};
+}
   '''
   f = open(folder + '/' + filename, 'w')
   f.write(filecontent) 
