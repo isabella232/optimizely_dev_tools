@@ -76,7 +76,11 @@ def create_package(package_name, default_config):
   packagefiles.create_functions_py_file(package_name, default_config)
   print_create_message(package_name, '/functions.py')
 
-  #TODO: create test files also
+  packagefiles.create_functions_py_test_file(package_name, default_config)
+  print_create_message(package_name, '/functions_test.py')
+
+  packagefiles.create_functions_js_test_file(package_name, default_config)
+  print_create_message(package_name, '/functions_test.unittests.js')
 
 def main(args):
   init(autoreset=True)

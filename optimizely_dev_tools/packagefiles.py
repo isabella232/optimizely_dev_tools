@@ -49,6 +49,13 @@ def create_functions_js_file(package_name, default_config):
   else:
     copyfile('template_files/functions_unconfigured.js', file_path)
 
+def create_functions_js_test_file(package_name, default_config):
+  # TODO: implement
+  file_name = '/functions_test.unittests.js'
+  file_path = package_name + '/' + file_name
+  f = open(file_path, 'w')
+  f.close()
+
 def create_functions_py_file(package_name, default_config):
   file_name = 'functions.py'
   file_path = package_name + '/' + file_name
@@ -56,3 +63,10 @@ def create_functions_py_file(package_name, default_config):
     copyfile('template_files/functions_default.py', file_path)
   else:
     copyfile('template_files/functions_unconfigured.py', file_path)
+
+def create_functions_py_test_file(package_name, defaut_config):
+  # TODO: implement
+  file_name = 'functions_test.py'
+  file_path = package_name + '/' + file_name
+  f = open(file_path, 'w')
+  f.close()
