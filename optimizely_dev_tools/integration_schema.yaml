@@ -1,0 +1,110 @@
+type: map
+required: True
+matching-rule: 'any'
+mapping:
+  regex;([a-z0-9_]{3,30}):
+    type: map
+    mapping:
+      addon_type:
+        type: str
+        required: True
+      beta:
+        type: bool
+        required: True
+      categories:
+        type: seq
+        sequence:
+          - type: text
+        required: True
+      channels:
+        type: seq
+        sequence:
+          - type: text
+        required: True
+      products:
+        type: seq
+        sequence:
+          - type: text
+        required: True
+      description:
+        type: text
+        required: True
+      developer:
+        type: text
+        required: True
+      developer_website:
+        type: any
+      enabled:
+        type: bool
+        required: True
+      logo_file_name:
+        type: text
+        required: False
+      master_label:
+        type: text
+        required: True
+      partner_dir_url:
+        type: text
+        required: True
+      permission_required:
+        type: text
+        required: True
+      settings_metadata:
+        type: map
+        required: False
+        mapping:
+          fields:
+            type: seq
+            required: True
+            sequence:
+              - type: map
+                mapping:
+                  inputType:
+                    type: text
+                    required: True
+                  label:
+                    type: text
+                    required: True
+                  name:
+                    type: text
+                    required: True
+                  placeHolderText:
+                    type: text
+                    required: False
+                  required:
+                    type: bool
+                    required: True
+                  includeInSnippet:
+                    type: bool
+                    required: False 
+                  saveLocations:
+                    type: seq
+                    sequence:
+                      - type: text
+          generalHelp:
+            type: map
+            mapping:
+              project:
+                type: map
+                mapping:
+                  kbLink:
+                    type: text
+              experiment:
+                type: map
+                mapping:
+                  message:
+                    type: text
+          onOffableAtProjectLevel:
+            type: bool
+          onOffableAtExperimentLevel:
+            type: bool
+          settingsHelp:
+            type: map
+            mapping:
+              project:
+                type: map
+                mapping:
+                  message:
+                    type: text
+                  kbLink:
+                    type: text

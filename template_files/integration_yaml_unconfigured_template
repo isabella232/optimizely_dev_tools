@@ -1,0 +1,39 @@
+{package_name}: 
+  addon_type: # Value: integration or app
+  beta: false
+  categories:
+  - # Fill in the category type displayed on the integrations tab. Values: Analytics, Call tracking, Audiences, Heatmap, Content Management, Productivity
+  channels:
+  - web
+  products:
+  - ab_testing
+  - personalization
+  description: # Provide a description of what your app does. The description will be displayed on the integration tab.
+  developer: # The name of you or your company
+  developer_website: # Your website
+  enabled: true
+  logo_file_name: # What is the filename of your logo (in the assets folder)
+  master_label: # Name of the integration as displayed on the integrations tab
+  partner_dir_url: https://www.optimizely.com/partners/technology/{package_name}
+  permission_required: {package_name}_integration
+  settings_metadata: # Define setting fields that are referenceable in all of your integration logic. Example:
+  # fields:
+  # - inputType: text
+  #   label: Streaming URL
+  #   name: streaming_url
+  #   required: true
+  #   includeInSnippet: true
+  #   saveLocations:
+  #   - project
+  # - inputType: text
+  #   label: Campaigns URL
+  #   name: campaigns_url
+  #   required: true
+  #   saveLocations:
+  #   - project 
+    generalHelp:
+      project:
+        kbLink: # Link to a help article regarding the integration
+    onOffableAtExperimentLevel: false
+    onOffableAtProjectLevel: # Does this integration have an on/off switch or is it only a integrations tab listing?
+    settingsHelp: {{}}

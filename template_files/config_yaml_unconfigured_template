@@ -1,0 +1,45 @@
+# When you create an audience integration, you can use this file
+# to specify the fields that appear in the audience builder. 
+
+#Example settings
+- config_type: visitor_data_service
+  master_label: # Use your company name, or the integration name
+  help_text: # A helptext that will appear in the audience builder
+  data_fetch_method: custom_javascript
+  supported_fields:
+    - name: # Unique identifier for condition
+      display_name: # Unique human readable name for condition
+      help_text: # A help text for the condition
+      # Input type is select. It will creete a dropdown with the values specified below.
+      input_type: select 
+      values:
+        - value: Education
+          text: Education
+        - value: Government
+          text: Government
+        - value: Hospitality
+          text: Hospitality
+        - value: Obscured
+          text: Obscured
+        - value: Residential
+          text: Residential
+    - name: # Unique identifier for condition
+      display_name: # Unique human readable name for condition
+      help_text: # A help text for the condition
+      # Input type is select. It will create a dropdown with the values fetched with functions.py
+      input_type: select
+    - name: # Unique identifier for condition
+      display_name: # Unique human readable name for condition
+      help_text: # A help text for the condition
+      # Input type is text. It will creete a textbox that the user can use to define a value.
+      input_type: text
+    - name: # Unique identifier for condition
+      display_name: # Unique human readable name for condition
+      help_text: # A help text for the condition
+      # Input type is keyvalue. It will create two textboxes that the user can use to define a key and a value.
+      input_type: keyvalue
+      input_labels:
+        - Key
+        - Value
+
+# Learn more regarding the options in this file on http://developers.optimizely.com'

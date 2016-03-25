@@ -10,7 +10,7 @@ setup(name='optimizely_dev_tools',
       packages=['optimizely_dev_tools', 'optimizely_platform'],
       scripts=['opti'],
       install_requires=[
-        'flask', 'colorama', 'PyYAML'
+        'flask', 'colorama', 'PyYAML', 'pykwalify', 'pylint', 'requests', 'NoseJS'
       ],
       classifiers=[
         'Development Status :: 3 - Alpha',
