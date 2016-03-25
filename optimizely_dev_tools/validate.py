@@ -102,7 +102,7 @@ def validate_integration_yaml(package_name):
   Raises:
     Exception if the integration.yaml file has an improper schema
   """
-  schema_validator = Core(source_file=package_name+'/integration.yaml', schema_files=['optimizely_dev_tools/integration_schema.yaml'])
+  schema_validator = Core(source_file=package_name+'/integration.yaml', schema_files=['schema_files/integration_schema.yaml'])
   schema_validator.validate(raise_exception=True)
 
 def validate_config_yaml(package_name):
@@ -111,7 +111,7 @@ def validate_config_yaml(package_name):
   Raises:
     Exception if the config.yaml file has an improper schema
   """
-  schema_validator = Core(source_file=package_name+'/config.yaml', schema_files=['optimizely_dev_tools/config_schema.yaml'])
+  schema_validator = Core(source_file=package_name+'/config.yaml', schema_files=['schema_files/config_schema.yaml'])
   schema_validator.validate(raise_exception=True)
 
 def get_pylint_errors(pylint_output):
@@ -147,7 +147,7 @@ def validate_functions_js(package_name):
     Exception if functions.js is an invalid JS program
   """
   try:
-    subprocess.check_call(['node','validate_functions.js', package_name+'/functions.js'])
+    subprocess.check_call(['node','optimizely_dev_tools/validate_functions.js', package_name+'/functions.js'])
   except Exception as e:
     raise Exception("functions.js validation error")
 
