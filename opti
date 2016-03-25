@@ -10,8 +10,8 @@ def main():
   
   new_parser = subparser.add_parser('new', description='Create a new Optimizely integration package.')
   new_parser.add_argument('--default_config', action='store_true')
-  new_parser.add_argument('-config_type', help='either audience or app', dest='config_type')
-  new_parser.add_argument('-package_name', help='name of the package to create', dest='package_name')
+  new_parser.add_argument('-config_type', help='either audience or app', dest='config_type', required=True)
+  new_parser.add_argument('-package_name', help='name of the package to create', dest='package_name', required=True)
   new_parser.set_defaults(func=new.main)
 
   validate_parser = subparser.add_parser('validate', description='Validate an Optimizely package.')
