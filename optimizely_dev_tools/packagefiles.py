@@ -1,239 +1,58 @@
-def create_init_file(folder, example):
-  filename = '__init__.py'
-  f = open(folder + '/' + filename, 'w')
+from shutil import copy, copyfile
+
+def create_init_file(package_name):
+  file_name = '__init__.py'
+  f = open(package_name + '/' + file_name, 'w')
   f.write('# This file indicates this is a Python package. No modifications needed.')
 
-def create_config_file(folder, example):
+def create_config_file(package_name, default_config):
   filename = 'config.yaml'
-  filecontent = ''
-  if example:
-    filecontent = '''- config_type: visitor_data_service
-  master_label: XYZ Company
-  help_text: Build audiences based on XYZ Company campaigns
-  data_fetch_method: custom_javascript
-  supported_fields:
-    - name: campaigns
-      display_name: XYZ Campaign
-      help_text: Campaigns defined in the XYZ interface
-      input_type: select
-    - name: audience
-      display_name: XYZ Audience
-      help_text: Classifies web traffic by defined categories
-      input_type: select
-      values:
-        - value: Education
-          text: Education
-        - value: Government
-          text: Government
-        - value: Hospitality
-          text: Hospitality
-        - value: Obscured
-          text: Obscured
-        - value: Residential
-          text: Residential
-        - value: SMB
-          text: SMB
-        - value: SOHO
-          text: SOHO
-        - value: Wireless
-          text: Wireless
-        - value: Enterprise Business
-          text: Enterprise Business
-        - value: Mid-Market Business
-          text: Mid-Market Business'''
+  file_content = ''
+  if default_config:
+    with open('template_files/config_yaml_default_template', 'r') as f:
+      file_content = f.read()
+      file_content = file_content.format(package_name=package_name)
   else:
-    filecontent = '''# When you create an audience integration, you can use this file
-# to specify the fields that appear in the audience builder. 
+    with open('template_files/config_yaml_unconfigured_template', 'r') as f:
+      file_content = f.read()
+  with open(package_name + '/' + filename, 'w') as f:
+    f.write(file_content)
 
-#Example settings
-- config_type: visitor_data_service
-  master_label: # Use your company name, or the integration name
-  help_text: # A helptext that will appear in the audience builder
-  data_fetch_method: custom_javascript
-  supported_fields:
-    - name: # Unique identifier for condition
-      display_name: # Unique human readable name for condition
-      help_text: # A help text for the condition
-      # Input type is select. It will creete a dropdown with the values specified below.
-      input_type: select 
-      values:
-        - value: Education
-          text: Education
-        - value: Government
-          text: Government
-        - value: Hospitality
-          text: Hospitality
-        - value: Obscured
-          text: Obscured
-        - value: Residential
-          text: Residential
-    - name: # Unique identifier for condition
-      display_name: # Unique human readable name for condition
-      help_text: # A help text for the condition
-      # Input type is select. It will create a dropdown with the values fetched with functions.py
-      input_type: select
-    - name: # Unique identifier for condition
-      display_name: # Unique human readable name for condition
-      help_text: # A help text for the condition
-      # Input type is text. It will creete a textbox that the user can use to define a value.
-      input_type: text
-    - name: # Unique identifier for condition
-      display_name: # Unique human readable name for condition
-      help_text: # A help text for the condition
-      # Input type is keyvalue. It will create two textboxes that the user can use to define a key and a value.
-      input_type: keyvalue
-      input_labels:
-        - Key
-        - Value
-
-# Learn more regarding the options in this file on http://developers.optimizely.com'''   
-  f = open(folder + '/' + filename, 'w')
-  f.write(filecontent)
-
-def create_integration_file(folder, default_config):
+def create_integration_file(package_name, default_config):
   file_name = 'integration.yaml'
   file_content = ''
   if default_config:
     with open('template_files/integration_yaml_default_template', 'r') as f:
       file_content = f.read()
-      file_content = file_content.format(package_name=folder)
+      file_content = file_content.format(package_name=package_name)
   else:
     with open('template_files/integration_yaml_unconfigured_template', 'r') as f:
       file_content = f.read()
-      file_content = file_content.format(package_name=folder)
-  with open(folder + '/' + file_name, 'w') as f:
+      file_content = file_content.format(package_name=package_name)
+  with open(package_name + '/' + file_name, 'w') as f:
     f.write(file_content)
 
-def create_example_response_file(folder, example):
-  filename = 'example.json'
-  filecontent = '// Provide an example response from your streaming server (if you use dynamic audiences in your integration)'
-  if example:
-    filecontent = '''// Example response
- {"campaigns": [
-  {
-    "campaign": 51899,
-    "seg_id": "1387680654",
-    "timestamp": 1422302783,
-    "categories": [
-    {
-     "categoryID": 17,
-     "timestamp": 1422302778
-    }
-    ]
-  },
-  {
-    "campaign": 51898,
-    "seg_id": "1373691942",
-    "timestamp": 1422302783,
-    "categories": [
-    {
-     "categoryID": 17,
-     "timestamp": 1422302778
-    }
-    ]
-  },
-  {
-    "campaign": 48740,
-    "seg_id": "828882042",
-    "timestamp": 1422302783,
-    "categories": [
-    {
-     "categoryID": 17,
-     "timestamp": 1422302778
-    }
-    ]
-  },
-  {
-    "campaign": 51898,
-    "seg_id": "1373691942",
-    "timestamp": 1422302783,
-    "categories": [
-    {
-     "categoryID": 17,
-     "timestamp": 1422302778
-    }
-    ]
-  }
- ]}
-'''
-  f = open(folder + '/' + filename, 'w')
-  f.write(filecontent)  
-
-def create_functions_js_file(folder, example):
-  filename = 'functions.js'
-  filecontent = ''
-  if example:
-    filecontent = '''{
-  fetchData: function() {
-    $.getJSON("", function(data) {
-      window["optimizely"] = window["optimizely"] || [];
-      window["optimizely"].push(["storeThirdPartyData", "xyz", data]);
-    });
-  }
-}
-'''
+def create_example_response_file(package_name, default_config):
+  file_name = 'example.json'
+  file_content = '// Provide an example response from your streaming server (if you use dynamic audiences in your integration)'
+  if default_config:
+    copy('template_files/'+file_name, package_name)
   else:
-    filecontent = '''{
-  fetchData: function() {
-    // If you use dynamic audiences, this function will be executed to fetch visitor data from a server.
-    // Example:
+    f = open(package_name + '/' + file_name, 'w')
+    f.write(file_content)
 
-    /**
-     * $.getJSON("url", function(data) {
-     *  window["optimizely"].push(["storeThirdPartyData", "xyz", data]);
-     * });
-     */
-  }
-}
-  '''
-  f = open(folder + '/' + filename, 'w')
-  f.write(filecontent) 
-
-def create_functions_py_file(folder, example):
-  filename = 'functions.py'
-  filecontent = ''
-  if example:
-    filecontent = '''
-import requests
-
-from optimizely_platform import exceptions
-from optimizely_platform import objects
-def get_dynamic_audience_conditions(integration_settings):
-  url = str(integration_settings['url'])
-
-  response = requests.get(url).json()
-
-  audience_condition_options = []
-
-  try:
-    for campaign in response:
-      audience_condition_options.append(
-          objects.AudienceConditionOption(campaign['campaignId'], campaign['name'].strip()))
-
-    return [objects.AudienceCondition('campaigns', audience_condition_options)]
-  except Exception as e:
-    raise e''' 
+def create_functions_js_file(package_name, default_config):
+  file_name = 'functions.js'
+  file_path = package_name + '/' + file_name
+  if default_config:
+    copyfile('template_files/functions_default.js', file_path)
   else:
-    filecontent = '''# This file allows you to define the logic to fetch dynamic audiences
-#
-# from optimizely_platform import exceptions
-# from optimizely_platform import objects
-# def get_dynamic_audience_conditions(integration_settings):
-#   url = str(integration_settings['url'])
+    copyfile('template_files/functions_unconfigured.js', file_path)
 
-#   response = requests.get(url).json()
-
-#   audience_condition_options = []
-
-#   try:
-#     for campaign in response:
-#       audience_condition_options.append(
-#           objects.AudienceConditionOption(campaign['campaignId'], campaign['name'].strip()))
-
-#     return [objects.AudienceCondition('campaigns', audience_condition_options)]
-#   except Exception as e:
-#     raise e''' 
-  f = open(folder + '/' + filename, 'w')
-  f.write(filecontent)   
-
-
+def create_functions_py_file(package_name, default_config):
+  file_name = 'functions.py'
+  file_path = package_name + '/' + file_name
+  if default_config:
+    copyfile('template_files/functions_default.py', file_path)
+  else:
+    copyfile('template_files/functions_unconfigured.py', file_path)
