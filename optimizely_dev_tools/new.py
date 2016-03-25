@@ -58,7 +58,7 @@ def create_package(package_name, default_config):
   copy_logo(package_name)
   print_create_message(package_name, '/assets/logo.png')
 
-  packagefiles.create_init_file(package_name, default_config)
+  packagefiles.create_init_file(package_name)
   print_create_message(package_name, '/__init__.py')
 
   packagefiles.create_config_file(package_name, default_config)
