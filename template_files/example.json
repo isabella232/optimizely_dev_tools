@@ -1,0 +1,47 @@
+// Example response
+{"campaigns": [
+  {
+    "campaign": 51899,
+    "seg_id": "1387680654",
+    "timestamp": 1422302783,
+    "categories": [
+    {
+     "categoryID": 17,
+     "timestamp": 1422302778
+    }
+    ]
+  },
+  {
+    "campaign": 51898,
+    "seg_id": "1373691942",
+    "timestamp": 1422302783,
+    "categories": [
+    {
+     "categoryID": 17,
+     "timestamp": 1422302778
+    }
+    ]
+  },
+  {
+    "campaign": 48740,
+    "seg_id": "828882042",
+    "timestamp": 1422302783,
+    "categories": [
+    {
+     "categoryID": 17,
+     "timestamp": 1422302778
+    }
+    ]
+  },
+  {
+    "campaign": 51898,
+    "seg_id": "1373691942",
+    "timestamp": 1422302783,
+    "categories": [
+    {
+     "categoryID": 17,
+     "timestamp": 1422302778
+    }
+    ]
+  }
+]}

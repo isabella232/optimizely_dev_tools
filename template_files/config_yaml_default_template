@@ -1,0 +1,34 @@
+- config_type: visitor_data_service
+  master_label: {package_name}
+  help_text: Build audiences based on {package_name} campaigns
+  data_fetch_method: custom_javascript
+  supported_fields:
+    - name: campaigns
+      display_name: {package_name} Campaign
+      help_text: Campaigns defined in the {package_name} interface
+      input_type: select
+    - name: audience
+      display_name: {package_name} Audience
+      help_text: Classifies web traffic by defined categories
+      input_type: select
+      values:
+        - value: Education
+          text: Education
+        - value: Government
+          text: Government
+        - value: Hospitality
+          text: Hospitality
+        - value: Obscured
+          text: Obscured
+        - value: Residential
+          text: Residential
+        - value: SMB
+          text: SMB
+        - value: SOHO
+          text: SOHO
+        - value: Wireless
+          text: Wireless
+        - value: Enterprise Business
+          text: Enterprise Business
+        - value: Mid-Market Business
+          text: Mid-Market Business
