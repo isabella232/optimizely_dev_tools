@@ -19,15 +19,20 @@ setup(name='optimizely_dev_tools',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
-      ],      
-      package_data={'optimizely_dev_tools': [
-        'assets/*.png', 
-        'assets/*.csv', 
-        'assets/*.html', 
-        'templates/*.html',
-        'static/*.png',
-        'static/*.svg',
-        'static/*.css',
-        'static/*.js'
-      ]},
+      ],
+      package_data={
+        'optimizely_dev_tools': [
+          'assets/*.png',
+          'assets/*.csv',
+          'assets/*.html',
+          'schema_files/*.yaml',
+          'static/*.png',
+          'static/*.svg',
+          'static/*.css',
+          'static/*.js',
+          'template_files/*',
+          'templates/*.html',
+          'validate_functions.js'
+        ],
+      },
       zip_safe=False)

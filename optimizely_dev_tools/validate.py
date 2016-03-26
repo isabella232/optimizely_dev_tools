@@ -1,6 +1,7 @@
-import importlib
+import imp
 import localserver
 import os
+import pkg_resources
 import re
 import subprocess
 import sys
@@ -11,6 +12,8 @@ from os import path
 from pprint import pprint
 from pykwalify.core import Core
 from pylint import epylint as lint
+
+resource_package = __name__
 
 def print_successful_validation_message(message):
   """Prints success message for validation of the contents of a file
@@ -102,7 +105,9 @@ def validate_integration_yaml(package_name):
   Raises:
     Exception if the integration.yaml file has an improper schema
   """
-  schema_validator = Core(source_file=package_name+'/integration.yaml', schema_files=['schema_files/integration_schema.yaml'])
+  resource_path = os.path.join('schema_files', 'integration_schema.yaml')
+  file_path = pkg_resources.resource_filename(resource_package, resource_path)
+  schema_validator = Core(source_file=os.path.join(package_name, 'integration.yaml'), schema_files=[file_path])
   schema_validator.validate(raise_exception=True)
 
 def validate_config_yaml(package_name):
@@ -111,7 +116,9 @@ def validate_config_yaml(package_name):
   Raises:
     Exception if the config.yaml file has an improper schema
   """
-  schema_validator = Core(source_file=package_name+'/config.yaml', schema_files=['schema_files/config_schema.yaml'])
+  resource_path = os.path.join('schema_files', 'config_schema.yaml')
+  file_path = pkg_resources.resource_filename(resource_package, resource_path)
+  schema_validator = Core(source_file=os.path.join(package_name, 'config.yaml'), schema_files=[file_path])
   schema_validator.validate(raise_exception=True)
 
 def get_pylint_errors(pylint_output):
@@ -132,11 +139,11 @@ def validate_functions_py(package_name):
   Raises:
     Exception if functions.py is an invalid Python program
   """
-  pylint_stdout, pylint_stderr = lint.py_run(package_name+'/functions.py', True)
+  pylint_stdout, pylint_stderr = lint.py_run(os.path.join(package_name, 'functions.py'), True)
   errors = get_pylint_errors(pylint_stdout.readlines())
   if errors:
     raise Exception("Syntax errors in functions.py: " + str(errors))
-  functions = importlib.import_module(package_name+'.functions')
+  functions = imp.load_source('functions', os.path.join(package_name, 'functions.py'))
   if not hasattr(functions, 'get_dynamic_audience_conditions'):
     raise Exception("functions.py does not contain get_dynamic_audience_conditions function")
 
@@ -146,8 +153,10 @@ def validate_functions_js(package_name):
   Raises:
     Exception if functions.js is an invalid JS program
   """
+  resource_path = 'validate_functions.js'
+  file_path = pkg_resources.resource_filename(resource_package, resource_path)
   try:
-    subprocess.check_call(['node','optimizely_dev_tools/validate_functions.js', package_name+'/functions.js'])
+    subprocess.check_call(['node', file_path, os.path.join(package_name, 'functions.js')])
   except Exception as e:
     raise Exception("functions.js validation error")
 
