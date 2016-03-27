@@ -24,3 +24,8 @@ opti new -config_type {integration type} -package_name {name of package}
 ```
 opti validate {name of package}
 ```
+
+## Running tests (Python and JavaScript) for a package
+```
+opti test {name of package}
+```

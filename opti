@@ -3,6 +3,7 @@ import argparse
 from optimizely_dev_tools import help
 from optimizely_dev_tools import new
 from optimizely_dev_tools import validate
+from optimizely_dev_tools import test
 
 def main():
   parser = argparse.ArgumentParser(description='Optimizely developer tools', prog='opti')
@@ -17,6 +18,10 @@ def main():
   validate_parser = subparser.add_parser('validate', description='Validate an Optimizely package.')
   validate_parser.add_argument('package_name')
   validate_parser.set_defaults(func=validate.main)
+
+  test_parser = subparser.add_parser('test', description='Run the JavaScript and Python tests in an Optimizely package.')
+  test_parser.add_argument('package_name')
+  test_parser.set_defaults(func=test.main)
 
   help_parser = subparser.add_parser('help', description='Open the developer documents related to Optimizely packages in a browser.') 
   help_parser.set_defaults(func=help.main)
