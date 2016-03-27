@@ -2,15 +2,15 @@ from setuptools import setup
 
 setup(name='optimizely_dev_tools',
       version='0.0.1',
-      description='Optimizely developer tools',
+      description='Package helping developers build and validate integrations for use on the Optimizely dashboard',
       url='http://developers.optimizely.com/',
-      author='Jon Gaulding, Tyler Jones, Peng-Wen Chen, Ali Rizvi, Lucas Swartsenburg',
+      author='Jon Gaulding, Tyler Jones, Peng-Wen Chen, Ali Rizvi, Lucas Swartsenburg, Vignesh Raja',
       author_email='lucas@optimizely.com',
       license='MIT',
       packages=['optimizely_dev_tools'],
       scripts=['opti'],
       install_requires=[
-        'flask', 'colorama', 'PyYAML', 'pykwalify', 'pylint', 'requests', 'NoseJS', 'optimizely-platform'
+        'colorama', 'flask', 'optimizely-platform', 'pykwalify', 'pylint', 'PyYAML', 'requests'
       ],
       classifiers=[
         'Development Status :: 3 - Alpha',
