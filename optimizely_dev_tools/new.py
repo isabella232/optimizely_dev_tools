@@ -88,10 +88,17 @@ def main(args):
   # currently only Audiences supported
   config_type = args.config_type
   default_config = args.default_config
-
+  
+  configs_supported = ['audience']
+  if config_type not in configs_supported:
+    print('[' + Fore.RED + 'ERROR' + Style.RESET_ALL + '] config_type not supported') 
+    return
+  
   if not check_package_name(package_name):
     print('[' + Fore.RED + 'ERROR' + Style.RESET_ALL + '] Packagename must match [a-z0-9_]{4,30}')
-  elif not os.path.exists(package_name):
+    return
+  
+  if not os.path.exists(package_name):
     create_package(package_name, default_config)
   else:
     print('[' + Fore.RED + 'ERROR' + Style.RESET_ALL + '] Folder already exists')
