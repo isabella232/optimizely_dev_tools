@@ -61,11 +61,12 @@ def create_functions_js_file(package_name, default_config):
     copyfile(template_path, file_path)
 
 def create_functions_js_test_file(package_name, default_config):
-  # TODO: implement
   file_name = 'functions_test.unittests.js'
-  file_path = os.path.join(package_name, file_name)
-  f = open(file_path, 'w')
-  f.close()
+  file_path = package_name + '/' + file_name
+
+  resource_path = os.path.join('template_files', 'functions_test_default.unittests.js')
+  template_path = pkg_resources.resource_filename(resource_package, resource_path)
+  copyfile(template_path, file_path)
 
 def create_functions_py_file(package_name, default_config):
   file_name = 'functions.py'
@@ -80,8 +81,9 @@ def create_functions_py_file(package_name, default_config):
     copyfile(template_path, file_path)
 
 def create_functions_py_test_file(package_name, default_config):
-  # TODO: implement
   file_name = 'functions_test.py'
-  file_path = os.path.join(package_name, file_name)
-  f = open(file_path, 'w')
-  f.close()
+  file_path = package_name + '/' + file_name
+
+  resource_path = os.path.join('template_files', 'functions_test_default.py')
+  template_path = pkg_resources.resource_filename(resource_package, resource_path)
+  copyfile(template_path, file_path)

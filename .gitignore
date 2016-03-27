@@ -1,5 +1,16 @@
+.idea/
+
 build
 dist
 *.egg-info
 *.pyc
 *.swp
+
+node_modules/
+
+# virtualenv dirs
+.virtualenv/
+venv/
+
+# versions of functions.js files for test purposes
+functions.under_test.js
