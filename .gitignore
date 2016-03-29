@@ -5,6 +5,7 @@ dist
 *.egg-info
 *.pyc
 *.swp
+.DS_Store
 
 node_modules/
 
