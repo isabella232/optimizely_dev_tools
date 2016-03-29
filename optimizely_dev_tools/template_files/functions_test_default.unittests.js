@@ -1,6 +1,6 @@
 var expect = require('expect.js');
 var integrationFunctions = require('./functions.under_test');
-var testHelpers = require('../../testing/test_helpers');
+var testHelpers = require('../testing/test_helpers');
 
 describe('my integration functions', function(){
 
