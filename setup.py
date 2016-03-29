@@ -10,7 +10,7 @@ setup(name='optimizely_dev_tools',
       packages=['optimizely_dev_tools'],
       scripts=['opti'],
       install_requires=[
-        'colorama', 'flask', 'optimizely-platform', 'pykwalify', 'pylint', 'PyYAML', 'mock', 'requests'
+        'colorama', 'flask', 'mock', 'optimizely-platform', 'pykwalify', 'pylint', 'PyYAML', 'requests'
       ],
       classifiers=[
         'Development Status :: 3 - Alpha',
@@ -25,14 +25,20 @@ setup(name='optimizely_dev_tools',
           'assets/*.png',
           'assets/*.csv',
           'assets/*.html',
+          'Gruntfile.js',
+          'package.json',
           'schema_files/*.yaml',
+          'scripts/*.sh',
           'static/*.png',
           'static/*.svg',
           'static/*.css',
           'static/*.js',
           'template_files/*',
           'templates/*.html',
-          'validate_functions.js'
+          'testing/*',
+          'validate_functions.js',
+          '.nvmrc',
         ],
       },
+      include_package_data=True,
       zip_safe=False)
