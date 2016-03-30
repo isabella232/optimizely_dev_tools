@@ -6,6 +6,7 @@ git clone https://github.com/optimizely/optimizely_dev_tools.git
 cd optimizely_dev_tools
 virtualenv venv
 source venv/bin/activate
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
 python setup.py install
 ```
 
