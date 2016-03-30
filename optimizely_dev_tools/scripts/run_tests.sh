@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-# must be run from root of repo
+if [ ! -f ~/.nvm/nvm.sh ]; then
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
+fi
 . ~/.nvm/nvm.sh
 nvm use
 npm install
