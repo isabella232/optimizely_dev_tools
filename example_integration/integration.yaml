@@ -1,4 +1,4 @@
-example_integration:
+example_audience:
   addon_type: integration
   beta: false
   categories:
@@ -15,7 +15,7 @@ example_integration:
   logo_file_name: example.png
   master_label: Example Integration
   partner_dir_url: https://www.optimizely.com/partners/technology/example
-  permission_required: example_integration
+  permission_required: example_audience_integration
   settings_metadata:
     fields:
     - inputType: text
