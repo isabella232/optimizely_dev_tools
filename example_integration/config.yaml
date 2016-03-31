@@ -1,5 +1,5 @@
 - config_type: visitor_data_service
-  master_label: example_integration
+  master_label: example_audience
   help_text: Build audiences based on campaigns from this sample data source
   data_fetch_method: custom_javascript
   supported_fields:
