@@ -1,6 +1,6 @@
 # Optimizely Developer Toolkit
 
-## Set up your development environment=
+## Set up your development environment
 ### Clone this repo
 
 ```
@@ -24,6 +24,9 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | b
 ```
 
 ## Creating a package
+
+When creating a new package, create a directory specifically for integration development (e.g., `optimizely_integrations/`) and `cd` into that directory. From there, use the following commands to initialize and develop your integration package(s).
+
 ### Pre-configured
 
 With the pre-configured command, the `opti` tool will provide you with a fully-functional integration package that you can modify to fit your integration.
@@ -53,4 +56,3 @@ opti test {name of package}
 ## Tips
 * Always activate your virtual environment when running the tool
 * Don't hesitate to create an issue under this GitHub repo if you run into issues. We're eager to evolve this tooling!
-
