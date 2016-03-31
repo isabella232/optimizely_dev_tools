@@ -30,3 +30,7 @@ opti validate {name of package}
 ```
 opti test {name of package}
 ```
+
+## Tips
+* Always activate your virtual environment when running the tool
+
