@@ -94,11 +94,6 @@ def create_package_json():
   package_json_path = pkg_resources.resource_filename(resource_package, file_name)
   copyfile(package_json_path, './'+file_name)
 
-def create_test_helpers():
-  folder_name = 'testing'
-  testing_folder_path = pkg_resources.resource_filename(resource_package, folder_name)
-  copy_tree(testing_folder_path, './'+folder_name)
-
 def create_grunt_file():
   file_name = 'Gruntfile.js'
   grunt_file_path = pkg_resources.resource_filename(resource_package, file_name)
@@ -108,9 +103,3 @@ def create_nvmrc():
   file_name = '.nvmrc'
   nvmrc_path = pkg_resources.resource_filename(resource_package, file_name)
   copyfile(nvmrc_path, './'+file_name)
-
-def create_scripts_dir():
-  folder_name = 'scripts'
-  scripts_folder_path = pkg_resources.resource_filename(resource_package, folder_name)
-  copy_tree(scripts_folder_path, './'+folder_name)
-  os.chmod('./scripts/create_under_test_js_files.sh', 0755)
