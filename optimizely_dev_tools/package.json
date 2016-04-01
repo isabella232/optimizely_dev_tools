@@ -6,6 +6,6 @@
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.5",
-    "optimizely-dev-tools-npm": "0.0.1"
+    "optimizely-dev-tools-npm": "0.0.2"
   }
 }
