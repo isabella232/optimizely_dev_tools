@@ -83,10 +83,8 @@ def create_package(package_name, default_config):
   print_create_message(package_name, '/functions_test.unittests.js')
 
   packagefiles.create_package_json()
-  packagefiles.create_test_helpers()
   packagefiles.create_grunt_file()
   packagefiles.create_nvmrc()
-  packagefiles.create_scripts_dir()
 
 def main(args):
   init(autoreset=True)

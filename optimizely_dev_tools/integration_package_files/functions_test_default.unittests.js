@@ -1,13 +1,13 @@
-var expect = require('expect.js');
+var expect = require('optimizely-dev-tools-npm/node_modules/expect.js');
 var integrationFunctions = require('./functions.under_test');
-var testHelpers = require('../testing/test_helpers');
+var devTools = require('optimizely-dev-tools-npm');
 
 describe('my integration functions', function(){
 
   describe('#fetchData', function(){
 
     beforeEach(function() {
-      testHelpers.mockWindowObject();
+      devTools.mockWindowObject();
     });
 
     it('should coerce the visitor data into the expected format and store it via storeThirdPartyData', function() {
