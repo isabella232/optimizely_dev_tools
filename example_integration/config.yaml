@@ -1,0 +1,34 @@
+- config_type: visitor_data_service
+  master_label: example_audience
+  help_text: Build audiences based on campaigns from this sample data source
+  data_fetch_method: custom_javascript
+  supported_fields:
+    - name: campaigns
+      display_name: Example Campaign
+      help_text: Choose your example campaign
+      input_type: select
+    - name: audience
+      display_name: Example Audience
+      help_text: This sample app filters audiences into categories
+      input_type: select
+      values:
+        - value: Education
+          text: Education
+        - value: Government
+          text: Government
+        - value: Hospitality
+          text: Hospitality
+        - value: Obscured
+          text: Obscured
+        - value: Residential
+          text: Residential
+        - value: SMB
+          text: SMB
+        - value: SOHO
+          text: SOHO
+        - value: Wireless
+          text: Wireless
+        - value: Enterprise Business
+          text: Enterprise Business
+        - value: Mid-Market Business
+          text: Mid-Market Business

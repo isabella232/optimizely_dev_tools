@@ -1,0 +1,33 @@
+example_audience:
+  addon_type: integration
+  beta: false
+  categories:
+  - Audiences
+  channels:
+  - web
+  products:
+  - ab_testing
+  - personalization
+  description: Sample Integration
+  developer: Optimizely
+  developer_website: null
+  enabled: true
+  logo_file_name: example.png
+  master_label: Example Integration
+  partner_dir_url: https://www.optimizely.com/partners/technology/example
+  permission_required: example_audience_integration
+  settings_metadata:
+    fields:
+    - inputType: text
+      label: Account Id
+      name: account_id
+      required: true
+      includeInSnippet: true
+      saveLocations:
+      - project
+    generalHelp:
+      project:
+        kbLink: https://example.com/optimizely-integration
+    onOffableAtExperimentLevel: false
+    onOffableAtProjectLevel: true
+    settingsHelp: {}
