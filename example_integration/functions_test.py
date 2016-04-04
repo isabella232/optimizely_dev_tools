@@ -12,8 +12,8 @@ class FunctionsTest(unittest.TestCase):
 
   def test_get_dynamic_audience_conditions__successful_fetch(self):
     SAMPLE_APP_SETTINGS = {
-          'account_id': 83043022
-      }
+      'account_id': 83043022
+    }
 
     MOCK_RESPONSE_OBJECT = mock.Mock()
     MOCK_RESPONSE_OBJECT.status_code = 200
@@ -28,10 +28,10 @@ class FunctionsTest(unittest.TestCase):
           "name": "Browser:chrome",
           "identifier": "browser_chrome"
       }]
-  }
-    EXPECTED_AUDIENCE_CONDITIONS = [objects.AudienceCondition('Sample Condition', 
-          [objects.AudienceConditionOption('age_20_30', 'Age: 20-30'), 
-           objects.AudienceConditionOption('buying_scooters', 'Buying:scooter'), 
+    }
+    EXPECTED_AUDIENCE_CONDITIONS = [objects.AudienceCondition('Sample Condition',
+          [objects.AudienceConditionOption('age_20_30', 'Age: 20-30'),
+           objects.AudienceConditionOption('buying_scooters', 'Buying:scooter'),
            objects.AudienceConditionOption('browser_chrome', 'Browser:chrome')])]
 
 
@@ -41,4 +41,3 @@ class FunctionsTest(unittest.TestCase):
     self.assertItemsEqual(EXPECTED_AUDIENCE_CONDITIONS, audience_conditions)
 
     mock_requests_get.assert_called_once_with('https://integrations.optimizely.how/api/83043022/campaigns.json')
-
