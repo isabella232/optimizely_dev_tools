@@ -28,10 +28,8 @@ def validate_integration_settings(integration_settings):
   try:
     verify_account(integration_settings['account_id'])
   except:
-    raise optimizely_platform.exceptions.IntegrationSettingsValidationError(
+    raise exceptions.IntegrationSettingsValidationError(
         'Your Account ID appears to be invalid.')
-
-  return optimizely_platform.Configuration.get_integration_strings()
 
 def verify_account(account_id):
   VERIFY_ACCOUNT_ENDPOINT = 'https://api.sample-app.com/verify/'
