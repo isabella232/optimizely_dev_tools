@@ -42,19 +42,17 @@ mapping:
         required: True
       logo_file_name:
         type: text
-        required: False
       master_label:
         type: text
         required: True
       partner_dir_url:
         type: text
-        required: True
       permission_required:
         type: text
         required: True
       settings_metadata:
         type: map
-        required: False
+        required: True
         mapping:
           fields:
             type: seq
@@ -83,9 +81,9 @@ mapping:
                     required: False 
                   saveLocations:
                     type: seq
-                    enum: ['project', 'experiment']
                     sequence:
-                      - type: text
+                      - type: str
+                        enum: ['project', 'experiment']
           generalHelp:
             type: map
             mapping:
@@ -94,6 +92,7 @@ mapping:
                 mapping:
                   kbLink:
                     type: text
+                    required: True
               experiment:
                 type: map
                 mapping:
@@ -101,8 +100,10 @@ mapping:
                     type: text
           onOffableAtProjectLevel:
             type: bool
+            required: True
           onOffableAtExperimentLevel:
             type: bool
+            required: True
           settingsHelp:
             type: map
             mapping:
@@ -111,5 +112,7 @@ mapping:
                 mapping:
                   message:
                     type: text
+                    required: True
                   kbLink:
                     type: text
+                    required: True

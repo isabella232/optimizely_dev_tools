@@ -11,6 +11,7 @@ sequence:
         required: True
       help_text:
         type: text
+        required: True
       data_fetch_method:
         type: text
       request_url_template:
@@ -24,6 +25,7 @@ sequence:
             type: text
       supported_fields:
         type: seq
+        required: True
         sequence:
           - mapping:  
               name:
@@ -34,6 +36,7 @@ sequence:
                 type: text
               input_type:
                 type: text
+                required: True
               values:
                 type: map
                 mapping:
