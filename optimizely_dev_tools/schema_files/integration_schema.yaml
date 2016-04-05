@@ -14,17 +14,20 @@ mapping:
       categories:
         type: seq
         sequence:
-          - type: text
+          - type: str
+            enum: ['Analytics', 'Audiences', 'Call Tracking', 'Heatmap', 'Productivity']
         required: True
       channels:
         type: seq
         sequence:
-          - type: text
+          - type: str
+            enum: ['web', 'ios', 'android']
         required: True
       products:
         type: seq
         sequence:
-          - type: text
+          - type: str
+            enum: ['ab_testing', 'personalization']
         required: True
       description:
         type: text
@@ -60,7 +63,8 @@ mapping:
               - type: map
                 mapping:
                   inputType:
-                    type: text
+                    type: str
+                    enum: ['text', 'checkbox', 'oauth_connect_button']
                     required: True
                   label:
                     type: text
@@ -79,6 +83,7 @@ mapping:
                     required: False 
                   saveLocations:
                     type: seq
+                    enum: ['project', 'experiment']
                     sequence:
                       - type: text
           generalHelp:
