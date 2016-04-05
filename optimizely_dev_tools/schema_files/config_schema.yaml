@@ -37,6 +37,27 @@ sequence:
               input_type:
                 type: text
                 required: True
+              input_labels:
+                type: seq
+                sequence:
+                  - type: str
+              unit:
+                type: text
+              match_type:
+                type: map
+                mapping:
+                  required:
+                    type: bool
+                    required: True
+                  values:
+                    type: seq
+                    required: True
+                    sequence:
+                      - mapping:
+                          value:
+                            type: text
+                          text:
+                            type: text
               values:
                 type: map
                 mapping:

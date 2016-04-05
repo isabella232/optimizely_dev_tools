@@ -23,6 +23,8 @@ mapping:
           - type: str
             enum: ['web', 'ios', 'android']
         required: True
+      label_as_beta:
+        type: bool
       products:
         type: seq
         sequence:
@@ -62,14 +64,27 @@ mapping:
                 mapping:
                   inputType:
                     type: str
-                    enum: ['text', 'checkbox', 'oauth_connect_button']
+                    enum: ['text', 'checkbox', 'oauth_connect_button', 'password', 'select']
                     required: True
                   label:
                     type: text
                     required: True
+                  description:
+                    type: text
                   name:
                     type: text
                     required: True
+                  values:
+                    type: seq
+                    sequence:
+                      - type: map
+                        mapping:
+                          text:
+                            type: text
+                            required: True
+                          id:
+                            type: text
+                            required: True
                   placeHolderText:
                     type: text
                     required: False
@@ -104,6 +119,12 @@ mapping:
           onOffableAtExperimentLevel:
             type: bool
             required: True
+          oauthAuthorizationUrl:
+            type: text
+            required: False
+          oauthTokenManagementUrl:
+            type: text
+            required: False
           settingsHelp:
             type: map
             mapping:
